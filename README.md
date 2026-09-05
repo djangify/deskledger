@@ -1,3 +1,5 @@
+![DESK LEDGER bookkeeping software](https://github.com/djangify/deskledger/blob/5c82d26eae11d02c61c839583467c6c789ec4bce/deskledger-homepage.png)
+
 # DeskLedger
 
 <p align="center">
