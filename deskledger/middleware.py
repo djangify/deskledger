@@ -1,4 +1,4 @@
-#  deskledger/middleware.py
+# deskledger/middleware.py
 """
 Middleware for managing tax year selection across the application.
 """

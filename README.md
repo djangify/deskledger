@@ -1,7 +1,5 @@
 # DeskLedger
 
-![MTD Bookkeeping Software](https://github.com/djangify/ deskledger/blob/9752bd38249676297c8e1e88fc151dbeccf84538/ deskledger-bookkeeping-dashboard.png)
-
 <p align="center">
   <a href="https://www.djangoproject.com/">
     <img src="https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white" alt="Django">
@@ -16,6 +14,8 @@
   <img src="https://img.shields.io/badge/Runs-Local--First-4B5563?style=for-the-badge" alt="Local First">
 
   <img src="https://img.shields.io/badge/Desktop-Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white" alt="Windows Desktop">
+
+  <img src="https://img.shields.io/badge/License-Noncommercial-7A3E9D?style=for-the-badge" alt="PolyForm Noncommercial License">
 
 </p>
 
@@ -93,8 +93,8 @@ Run DeskLedger locally on your machine from source. This runs the Django develop
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/djangify/ deskledger.git
-   cd  deskledger
+   git clone https://github.com/djangify/deskledger.git
+   cd deskledger
    ```
 
 2. **Create a virtual environment**
@@ -209,13 +209,13 @@ Double-click **`build_exe.bat`**, or run it from a terminal:
 build_exe.bat
 ```
 
-This installs dependencies and PyInstaller, collects static files, and runs PyInstaller using ` deskledger.spec`. When it finishes you'll have:
+This installs dependencies and PyInstaller, collects static files, and runs PyInstaller using `deskledger.spec`. When it finishes you'll have:
 
 ```
 dist/DeskLedger/DeskLedger.exe
 ```
 
-**To distribute:** zip the **entire `dist/DeskLedger` folder** and share the zip. The `.exe` needs the `_internal` folder beside it, so don't send the `.exe` on its own. End users just unzip and double-click `DeskLedger.exe` — no Python, no setup. A simple, non-technical guide for them is in **[HOW-TO-OPEN- deskledger.md](HOW-TO-OPEN- deskledger.md)**.
+**To distribute:** zip the **entire `dist/DeskLedger` folder** and share the zip. The `.exe` needs the `_internal` folder beside it, so don't send the `.exe` on its own. End users just unzip and double-click `DeskLedger.exe` — no Python, no setup. A simple, non-technical guide for them is in **[HOW-TO-OPEN-deskledger.md](HOW-TO-OPEN-deskledger.md)**.
 
 ### Default login
 
@@ -240,8 +240,8 @@ The packaged app keeps user data **outside** the program folder so it survives r
 - **Windows 10 or 11.** The build is Windows-only — it must be built *on* Windows, and the resulting `.exe` runs only on Windows. A Mac build would need to be produced on a Mac.
 - PyWebView uses the **WebView2** runtime, which ships with Windows 11 and most updated Windows 10 machines. On a rare PC without it, Windows offers it as a free one-time download.
 - New apps trigger a **"Windows protected your PC"** SmartScreen warning. This is normal for unsigned indie software — click **More info → Run anyway**. This is covered in the end-user guide.
-- The app icon is read from `static/images/ deskledger.ico` (referenced by ` deskledger.spec`). Replace that file to change the icon.
-- If the build fails mentioning `magic` / `libmagic`, run `pip install python-magic-bin` and rebuild. To see detailed errors, set `console=True` in ` deskledger.spec`.
+- The app icon is read from `static/images/deskledger.ico` (referenced by `deskledger.spec`). Replace that file to change the icon.
+- If the build fails mentioning `magic` / `libmagic`, run `pip install python-magic-bin` and rebuild. To see detailed errors, set `console=True` in `deskledger.spec`.
 
 ---
 
@@ -271,27 +271,27 @@ ALLOWED_HOSTS=localhost,127.0.0.1
 ## Project Structure
 
 ```
- deskledger/
+deskledger/
 ├── accounts/           # User authentication and management
 ├── bookkeeping/        # Core transaction tracking
 │   ├── models.py       # Income, Expense, Category, RecurringEntry
 │   ├── views/          # Transaction and report views
 │   └── utils.py        # Tax year utilities
 ├── business/           # Business profile management
-├──  deskledger/             # Django project settings
+├── deskledger/             # Django project settings
 │   ├── settings.py     # Application configuration
 │   ├── urls.py         # URL routing
 │   └── views.py        # Dashboard and home views
 ├── templates/          # HTML templates
-├── static/             # CSS, JS, images (incl. app icon  deskledger.ico)
+├── static/             # CSS, JS, images (incl. app icon deskledger.ico)
 ├── data/               # SQLite database and media (gitignored)
 │   ├── db/             # Database files (and daily backups under db/backups/)
 │   └── media/          # Uploaded receipts
 ├── desktop.py          # Desktop app launcher (PyWebView + waitress)
-├──  deskledger.spec         # PyInstaller build config for the .exe
+├── deskledger.spec         # PyInstaller build config for the .exe
 ├── start_desktop.bat   # Run the app in its own window (dev)
 ├── build_exe.bat       # Build the standalone Windows .exe
-├── HOW-TO-OPEN- deskledger.md  # Plain-language guide for end users
+├── HOW-TO-OPEN-deskledger.md  # Plain-language guide for end users
 ├── start.bat           # Run via the browser (Django dev server)
 ├── requirements.txt    # Python dependencies
 └── manage.py           # Django management script
@@ -375,7 +375,7 @@ DeskLedger does not currently expose a public API. All interactions are through 
 
 ### Getting Help
 
-- **Issues:** https://github.com/djangify/ deskledger/issues
+- **Issues:** https://github.com/djangify/deskledger/issues
 
 ---
 
@@ -397,7 +397,7 @@ We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guid
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](license.md) file for details.
+DeskLedger is **source-available**, licensed under the [PolyForm Noncommercial License 1.0.0](LICENSE). You're welcome to read the source, run it, and use it for any **noncommercial** purpose (personal use, study, hobby projects, charities, schools, and other noncommercial organisations). **Commercial use — including reselling it or offering it as a paid or hosted service — is not permitted** without a separate licence from the author. See the [LICENSE](LICENSE) file for the full terms.
 
 ---
 
@@ -420,7 +420,7 @@ DeskLedger is provided "as is" without warranty of any kind. If you choose to ru
 
 <p align="center">
   Made for solo professionals and the self employed<br>
-  <a href="https://todiane.com/blog/introducing- deskledger/">Introducing Desk Ledger</a>
+  <a href="https://todiane.com/blog/introducing-deskledger/">Introducing Desk Ledger</a>
 </p>
 
 

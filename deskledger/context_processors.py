@@ -1,4 +1,4 @@
-#  deskledger/context_processors.py
+# deskledger/context_processors.py
 """
 Context processors for DeskLedger templates.
 """
