@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="max-w-2xl mx-auto px-4 py-10">
+    <div class="mb-8">
+        <h1 class="text-2xl font-bold text-[color:var(--color-text)]">Account Settings</h1>
+        <div class="w-16 h-1 bg-[color:var(--color-accent)] mt-2"></div>
+    </div>
+
+    <form method="post" class="space-y-6">
+    {% csrf_token %}
+
+    <!-- Display / Currency Settings -->
+    <div class="bg-[color:var(--color-bg)] border border-[color:var(--color-border)] rounded-xl shadow-sm p-6 mb-6">
+        <h2 class="text-lg font-semibold text-[color:var(--color-text)] mb-1">Currency</h2>
+        <p class="text-sm text-[color:var(--color-text-muted)] mb-5">
+            Choose the currency symbol shown across your dashboard, entries, and reports.
+        </p>
+        <div>
+            <label class="font-semibold text-sm mb-1 block">{{ form.currency.label }}</label>
+            {{ form.currency }}
+            <p class="text-xs text-[color:var(--color-text-muted)] mt-1">{{ form.currency.help_text }}</p>
+        </div>
+    </div>
+
+    <!-- OCR Settings -->
+    <div class="bg-[color:var(--color-bg)] border border-[color:var(--color-border)] rounded-xl shadow-sm p-6 mb-6">
+        <h2 class="text-lg font-semibold text-[color:var(--color-text)] mb-1">Receipt OCR</h2>
+        <p class="text-sm text-[color:var(--color-text-muted)] mb-5">
+            Automatically extract date, amount, and supplier from receipt images when you add an expense.
+            You need your own API key — DeskLedger never stores or shares it beyond your account.
+        </p>
+
+        {% if has_api_key %}
+        <div class="mb-4 flex items-center gap-2 text-sm text-green-700 bg-green-50 border border-green-200 rounded px-3 py-2">
+            <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            API key configured — OCR is active.
+        </div>
+        {% else %}
+        <div class="mb-4 flex items-center gap-2 text-sm text-yellow-700 bg-yellow-50 border border-yellow-200 rounded px-3 py-2">
+            <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M12 3a9 9 0 110 18A9 9 0 0112 3z"/>
+            </svg>
+            No API key set — OCR is disabled.
+        </div>
+        {% endif %}
+
+        <div class="space-y-5">
+            <div>
+                <label class="font-semibold text-sm mb-1 block">{{ form.ocr_provider.label }}</label>
+                {{ form.ocr_provider }}
+            </div>
+
+            <div>
+                <label class="font-semibold text-sm mb-1 block">{{ form.ocr_api_key.label }}</label>
+                {{ form.ocr_api_key }}
+                <p class="text-xs text-[color:var(--color-text-muted)] mt-1">{{ form.ocr_api_key.help_text }}</p>
+                {% if form.ocr_api_key.errors %}
+                <p class="text-red-600 text-xs mt-1">{{ form.ocr_api_key.errors.0 }}</p>
+                {% endif %}
+            </div>
+
+            <div class="flex gap-3 items-center pt-2 border-t border-[color:var(--color-border)]">
+                <button type="submit"
+                        class="px-6 py-2 bg-[color:var(--color-primary)] text-white rounded hover:bg-[color:var(--color-accent)] transition text-sm font-medium">
+                    Save Settings
+                </button>
+                {% if has_api_key %}
+                <button type="submit" name="clear_api_key"
+                        class="px-4 py-2 border border-red-300 text-red-600 rounded hover:bg-red-50 transition text-sm">
+                    Remove API Key
+                </button>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Where to get an API key -->
+        <div class="mt-6 pt-4 border-t border-[color:var(--color-border)]">
+            <p class="text-xs font-semibold text-[color:var(--color-text-muted)] mb-2">How to get an API key:</p>
+            <ul class="text-xs text-[color:var(--color-text-muted)] space-y-1">
+                <li class="text-sm">
+                    <strong>Anthropic:</strong>
+                    Go to <a href="https://console.anthropic.com/keys" target="_blank" class="text-sm text-[color:var(--color-primary)] hover:underline">console.anthropic.com/keys</a>
+                    → Create key. Costs roughly £0.001–0.003 per receipt scan.
+                </li>
+                <li class="text-sm">
+                    <strong>OpenAI:</strong>
+                    Go to <a href="https://platform.openai.com/api-keys" target="_blank" class=" text-[color:var(--color-primary)] hover:underline">platform.openai.com/api-keys</a>
+                    → Create new secret key. Costs roughly £0.002–0.004 per receipt scan.
+                </li>
+            </ul>
+        </div>
+    </div>
+    </form>
+
+    <a href="{% url 'dashboard' %}" class="text-sm text-[color:var(--color-primary)] hover:underline">← Back to Dashboard</a>
+</div>
+{% endblock %}

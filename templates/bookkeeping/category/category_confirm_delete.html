@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="max-w-xl mx-auto px-4 py-10">
+    <div class="bg-[color:var(--color-bg)] border border-[color:var(--color-border)] rounded shadow-sm p-8 text-center">
+        <h1 class="text-xl font-bold text-[color:var(--color-text)] mb-3">Deactivate Category?</h1>
+        <p class="text-sm text-[color:var(--color-text-muted)] mb-6">
+            "<strong>{{ category.name }}</strong>" will be hidden from category dropdowns.
+            Existing transactions that use it won't be affected.
+        </p>
+        <form method="post" class="flex justify-center gap-4">
+            {% csrf_token %}
+            <button type="submit"
+                    class="px-6 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition">
+                Yes, Deactivate
+            </button>
+            <a href="{% url 'bookkeeping:category_list' %}"
+               class="px-6 py-2 border rounded text-[color:var(--color-text)] hover:bg-[color:var(--color-bg-muted)] transition">
+                Cancel
+            </a>
+        </form>
+    </div>
+</div>
+{% endblock %}

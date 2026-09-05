@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="max-w-5xl mx-auto px-4 py-10">
+    <div class="flex justify-between items-center mb-8">
+        <div>
+            <h1 class="text-2xl font-bold text-[color:var(--color-text)]">Categories</h1>
+            <div class="w-16 h-1 bg-[color:var(--color-accent)] mt-2"></div>
+        </div>
+        <a href="{% url 'bookkeeping:category_create' %}"
+           class="px-5 py-2 bg-[color:var(--color-primary)] text-white rounded hover:bg-[color:var(--color-accent)] transition text-sm font-medium">
+            + Add Category
+        </a>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+        <!-- Income Categories -->
+        <div class="bg-[color:var(--color-bg)] border border-[color:var(--color-border)] rounded-xl shadow-sm">
+            <div class="px-6 py-4 border-b border-[color:var(--color-border)]">
+                <h2 class="text-lg font-semibold text-[color:var(--color-text)]">Income Categories</h2>
+            </div>
+            <ul class="divide-y divide-[color:var(--color-border)]">
+                {% for cat in income_categories %}
+                <li class="flex items-center justify-between px-6 py-3">
+                    <span class="text-sm text-[color:var(--color-text)]">{{ cat.name }}</span>
+                    <div class="flex gap-3 text-sm">
+                        <a href="{% url 'bookkeeping:category_edit' cat.pk %}"
+                           class="text-[color:var(--color-primary)] hover:underline">Edit</a>
+                        <a href="{% url 'bookkeeping:category_delete' cat.pk %}"
+                           class="text-red-600 hover:underline">Delete</a>
+                    </div>
+                </li>
+                {% empty %}
+                <li class="px-6 py-4 text-sm text-[color:var(--color-text-muted)]">No income categories yet.</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <!-- Expense Categories -->
+        <div class="bg-[color:var(--color-bg)] border border-[color:var(--color-border)] rounded-xl shadow-sm">
+            <div class="px-6 py-4 border-b border-[color:var(--color-border)]">
+                <h2 class="text-lg font-semibold text-[color:var(--color-text)]">Expense Categories</h2>
+            </div>
+            <ul class="divide-y divide-[color:var(--color-border)]">
+                {% for cat in expense_categories %}
+                <li class="flex items-center justify-between px-6 py-3">
+                    <span class="text-sm text-[color:var(--color-text)]">{{ cat.name }}</span>
+                    <div class="flex gap-3 text-sm">
+                        <a href="{% url 'bookkeeping:category_edit' cat.pk %}"
+                           class="text-[color:var(--color-primary)] hover:underline">Edit</a>
+                        <a href="{% url 'bookkeeping:category_delete' cat.pk %}"
+                           class="text-red-600 hover:underline">Delete</a>
+                    </div>
+                </li>
+                {% empty %}
+                <li class="px-6 py-4 text-sm text-[color:var(--color-text-muted)]">No expense categories yet.</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="mt-6">
+        <a href="{% url 'dashboard' %}" class="text-sm text-[color:var(--color-primary)] hover:underline">← Back to Dashboard</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="max-w-5xl mx-auto py-16 px-6">
+
+    <!-- Hero Section -->
+    <div class="text-center mb-16">
+        <h1 class="text-4xl font-bold text-[color:var(--color-text)] mb-4">
+            Welcome to Desk Ledger
+        </h1>
+        <p class="text-lg text-[color:var(--color-text-muted)] max-w-2xl mx-auto">
+            
+            Desk Ledger is a lightweight, bookkeeping tool for solo professionals running a one-person business.
+            It has been made to be used on your computer but if you choose to you can self-host it. Either way, you own your data and it stays in your own environment.
+        </p>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+
+        <a href="https://github.com/djangify/ deskledger#quick-start" target="_blank"
+           class="block bg-[color:var(--color-bg)] border border-[color:var(--color-border)] rounded-lg p-6 
+                  hover:bg-[color:var(--color-bg-muted)] transition">
+            <h3 class="text-xl font-semibold mb-2 text-[color:var(--color-text)]">
+                Quick Start
+            </h3>
+            <p class="text-sm text-[color:var(--color-text-muted)]">
+                Learn how to install, configure, and use this bookkeeping software.
+            </p>
+        </a>
+
+        <a href="{% url 'business:business_list' %}"
+           class="block bg-[color:var(--color-bg)] border border-[color:var(--color-border)] rounded-lg p-6 
+                  hover:bg-[color:var(--color-bg-muted)] transition">
+            <h3 class="text-xl font-semibold mb-2 text-[color:var(--color-text)]">
+                Your Business
+            </h3>
+            <p class="text-sm text-[color:var(--color-text-muted)]">
+                View, edit, and manage your locally stored business.
+            </p>
+        </a>
+        <a href="#" target="_blank"
+           class="block bg-[color:var(--color-bg)] border border-[color:var(--color-border)] rounded-lg p-6 
+                  hover:bg-[color:var(--color-bg-muted)] transition">
+            <h3 class="text-xl font-semibold mb-2 text-[color:var(--color-text)]">
+               Reports
+            </h3>
+            <p class="text-sm text-[color:var(--color-text-muted)]">
+                Download your reports according to income, expenses and categories.
+            </p>
+        </a>
+
+    </div>
+
+    <!-- About Local Edition -->
+    <div class="bg-[color:var(--color-bg-muted)] border border-[color:var(--color-border)] rounded-lg p-8">
+        <h2 class="text-2xl font-bold text-[color:var(--color-text)] mb-4">About This Edition</h2>
+        <p class="text-[color:var(--color-text-muted)] leading-relaxed">
+            Desk Ledger Local Edition is designed for users who prefer owning their own data and keeping it fully under
+            their control. 
+            
+            Using the Self-Hosted Edition means everything is processed directly on your own hosting server using a SQLite database.
+        </p>
+        <p class="text-[color:var(--color-text-muted)] mt-4 leading-relaxed">
+            This edition is ideal for solo professionals, privacy-focused users, and anyone who wants a
+            straightforward bookkeeping tool without a subscription.
+        </p>
+        <p class="text-[color:var(--color-text-muted)] mt-4 leading-relaxed">
+            <strong>DISCLAIMER:</strong> Desk Ledger is provided "as is" without warranty of any kind. If you choose to self-host this software, you do so at your own risk. Check the software is compliant and check your cyber security to ensure your data is safe. The developer accepts no responsibility for data loss, inaccuracies, or any issues arising from its use. Always maintain your own backups and verify calculations independently.
+        </p>
+    </div>
+
+</div>
+
+{% endblock %}
