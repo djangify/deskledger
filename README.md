@@ -42,6 +42,8 @@ DeskLedger is a Django-based bookkeeping application designed specifically for a
 
 It is **local-first**: it runs on your own machine as a standalone Windows app, and your books never leave your computer.
 
+> **Use at your own risk.** You download and use DeskLedger at your own risk. It is bookkeeping software, not accounting, tax or legal advice. See the full [disclaimer](#disclaimer) at the end of this page.
+
 **Key Principles:**
 
 - **You own your data** — Everything is stored locally in SQLite
@@ -62,9 +64,9 @@ It is **local-first**: it runs on your own machine as a standalone Windows app, 
 - **Native Desktop App** — Run as a standalone Windows app in its own window — no browser required (see [Desktop App](#desktop-app-windows))
 - **Daily Backups** — The first time you open DeskLedger each day it copies your database into `data/db/backups/` and keeps 90 days of copies. You can also make a backup by hand at any time (see [Backups](#backups))
 
-### One person, one business
+### One copy, one business
 
-DeskLedger is built for **one person and one business per install**. It does not support several users or several businesses in the same copy. If you run two businesses, install DeskLedger twice in two separate folders (the desktop app and the source version each keep their own data). Keeping your books separate this way also keeps each business's records clean for your accountant.
+DeskLedger is built for **one person and one business per copy**. It does not support several users or several businesses in the same copy. Multi-business and multi-user support are open as ideas for contributors (see [CONTRIBUTING.md](CONTRIBUTING.md)).
 
 ### Admin Interface
 
@@ -427,7 +429,7 @@ DeskLedger does not currently expose a public API. All interactions are through 
 
 ## Contributing
 
-We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines and a list of things you could work on, including multi-business and multi-user support.
 
 ### Development Setup
 
@@ -464,7 +466,7 @@ Built with:
 ---
  # DISCLAIMER
 
-DeskLedger is provided "as is" without warranty of any kind. If you choose to run this software, you do so at your own risk. The developer accepts no responsibility for data loss, inaccuracies, or any issues arising from its use. Always maintain your own backups and verify calculations independently.
+DeskLedger is provided "as is", without warranty of any kind. You download and use it at your own risk. It is bookkeeping software, not accounting, tax or legal advice, and it does not file anything with a tax authority. Check your figures yourself, keep your own backups, and speak to a qualified accountant about your tax affairs. The developer accepts no responsibility for data loss, errors in the figures or anything else that results from using it.
 
 <p align="center">
   Made for solo professionals and the self employed<br>
