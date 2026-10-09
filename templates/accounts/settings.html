@@ -94,6 +94,12 @@
     </div>
     </form>
 
+    <div class="mb-8 p-4 border rounded">
+        <h2 class="font-semibold mb-1">Password</h2>
+        <p class="text-sm mb-2">Choose your own password, then delete <code>first_login.txt</code> from your data folder if it exists.</p>
+        <a href="{% url 'account_change_password' %}" class="text-[color:var(--color-primary)] hover:underline">Change password</a>
+    </div>
+
     <a href="{% url 'dashboard' %}" class="text-sm text-[color:var(--color-primary)] hover:underline">← Back to Dashboard</a>
 </div>
 {% endblock %}

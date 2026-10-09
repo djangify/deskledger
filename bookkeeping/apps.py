@@ -44,20 +44,30 @@ class BookkeepingConfig(AppConfig):
 
     def ready(self):
         """
-        Called when Django starts. Runs the daily DB backup and seeds the
-        default categories — but ONLY when this process is actually serving the
-        app. Management commands (makemigrations, migrate, collectstatic, shell,
-        test, ...) and PyInstaller builds must not trigger backups: running DB
-        work inside every command was fragile — one failure took down unrelated
-        commands like makemigrations.
+        Called when Django starts. Runs the daily DB backup, but ONLY when this
+        process is actually serving the app. Management commands (makemigrations,
+        migrate, collectstatic, shell, test, ...) and PyInstaller builds must not
+        trigger backups.
+
+        The default categories are seeded after migrations (post_migrate), not
+        here: querying the database inside ready() is discouraged by Django and
+        printed a RuntimeWarning on every start.
         """
+        from django.db.models.signals import post_migrate
+
+        post_migrate.connect(
+            self._seed_after_migrate,
+            sender=self,
+            dispatch_uid="bookkeeping.seed_default_categories",
+        )
+
         if not self._is_serving():
             return
 
-        # 1. Run backup once at startup
+        # Copy the database once a day (a file copy, no queries)
         self.run_daily_backup()
 
-        # 2. Seed categories
+    def _seed_after_migrate(self, **kwargs):
         self.seed_default_categories()
 
     @staticmethod

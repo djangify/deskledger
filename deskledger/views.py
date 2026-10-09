@@ -8,7 +8,7 @@ from bookkeeping.services import run_recurring_for_user
 from django.contrib.auth import logout
 from bookkeeping.models import RecurringRunLog
 from django.contrib import messages
-from django.http import JsonResponse
+from django.http import FileResponse, Http404, JsonResponse
 import json
 
 
@@ -20,6 +20,28 @@ def logout_view(request):
     if request.method == "POST":
         logout(request)
     return redirect("login")
+
+
+@login_required
+def protected_media(request, path):
+    """
+    Serve an uploaded receipt only to the logged-in user who owns it.
+
+    Receipts are never served as plain static files: anyone who could reach the
+    port would otherwise be able to download them without logging in.
+    """
+    expense = Expense.objects.filter(user=request.user, receipt=path).first()
+    if expense is None or not expense.receipt:
+        raise Http404("Receipt not found")
+    try:
+        handle = expense.receipt.open("rb")
+    except (FileNotFoundError, ValueError):
+        raise Http404("Receipt not found")
+    response = FileResponse(handle)
+    response["Content-Disposition"] = "inline"
+    response["X-Content-Type-Options"] = "nosniff"
+    response["Cache-Control"] = "private, no-store"
+    return response
 
 
 @login_required

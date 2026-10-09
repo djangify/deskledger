@@ -34,7 +34,19 @@ if env_file.exists():
     environ.Env.read_env(str(env_file))
 
 # Security
-SECRET_KEY = env("SECRET_KEY", default="change-me-in-production")
+# SECRET_KEY: use the environment/.env value if set. Otherwise generate a random
+# per-install key once and keep it in the data folder, so there is never a public
+# default key in use.
+SECRET_KEY = env("SECRET_KEY", default="")
+if not SECRET_KEY:
+    from django.core.management.utils import get_random_secret_key
+
+    _secret_file = DATA_DIR / "secret_key.txt"
+    if _secret_file.exists():
+        SECRET_KEY = _secret_file.read_text(encoding="utf-8").strip()
+    if not SECRET_KEY:
+        SECRET_KEY = get_random_secret_key()
+        _secret_file.write_text(SECRET_KEY, encoding="utf-8")
 DEBUG = env("DEBUG")
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["localhost", "127.0.0.1"])
 
@@ -165,11 +177,13 @@ STATIC_URL = "/static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
-
-# WhiteNoise Configuration
-STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
-# Cache static files for 1 year (immutable because of hashed filenames)
-WHITENOISE_MAX_AGE = 31536000  # 1 year in seconds
+# Django 5.1+ replaced STATICFILES_STORAGE with STORAGES. Files are compressed but
+# NOT given hashed names, so WhiteNoise's default (short) cache time is kept on
+# purpose: a long cache would leave browsers showing stale CSS after an update.
+STORAGES = {
+    "default": {"BACKEND": "django.core.files.storage.FileSystemStorage"},
+    "staticfiles": {"BACKEND": "whitenoise.storage.CompressedStaticFilesStorage"},
+}
 
 # Desktop (PyWebView) mode: let WhiteNoise serve static files directly from the
 # source folders via the staticfiles finders, so the app works even if
@@ -188,6 +202,11 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 LOGIN_URL = "/login/"
 LOGOUT_REDIRECT_URL = "/login/"
 LOGIN_REDIRECT_URL = "/dashboard/"
+
+# First-run login created by `manage.py create_default_user` (and by the desktop
+# app). Leave DEFAULT_USER_PASSWORD empty to get a random password generated for you.
+DEFAULT_USER_EMAIL = env("DEFAULT_USER_EMAIL", default="demo@example.com")
+DEFAULT_USER_PASSWORD = env("DEFAULT_USER_PASSWORD", default="")
 
 # Email — uses SMTP when EMAIL_HOST is set, otherwise logs to console
 _email_host = env("EMAIL_HOST", default="")

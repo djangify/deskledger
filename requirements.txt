@@ -1,16 +1,20 @@
+# Django 5.2 is a long-term-support release: mainstream support ended Dec 2025, security fixes continue until April 2028. Plan to move to Django 6.2 (the next LTS, April 2027).
+Django==5.2.18
 adminita==0.2.0
-asgiref==3.11.0
-Django==5.2.9
-django-allauth==65.13.1
-gunicorn==23.0.0
-packaging==25.0
-pillow==12.1.0
-django-environ==0.11.2
-cryptography==46.0.7
-sqlparse==0.5.5
-tzdata==2025.3
-whitenoise==6.11.0
-python-magic
+asgiref==3.12.1
+django-allauth==65.19.7
+django-environ==0.14.0
+cryptography==50.0.2
+pillow==12.3.0
+sqlparse==0.6.0
+tzdata==2026.5
+whitenoise==6.12.0
+packaging==26.3
+# File-type sniffing for uploads. On Windows use python-magic-bin, which bundles
+# libmagic. Do NOT install both: they overwrite each other's "magic" package and
+# importing it then hangs/crashes.
+python-magic==0.4.27; sys_platform != "win32"
+python-magic-bin==0.4.14; sys_platform == "win32"
 # Desktop app (native window + production server for the bundled .exe)
 waitress==3.0.2
 pywebview==6.2.1
