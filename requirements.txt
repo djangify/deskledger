@@ -1,6 +1,6 @@
 # Django 5.2 is a long-term-support release: mainstream support ended Dec 2025, security fixes continue until April 2028. Plan to move to Django 6.2 (the next LTS, April 2027).
 Django==5.2.18
-adminita==0.2.0
+adminita
 asgiref==3.12.1
 django-allauth==65.19.7
 django-environ==0.14.0
