@@ -4,8 +4,8 @@ Management command: python manage.py backup_db
 Creates a timestamped copy of db.sqlite3 in data/db/backups/.
 Keeps the last 30 backups and removes older ones automatically.
 
-To run it on a schedule, point Windows Task Scheduler (or cron on
-macOS/Linux) at: python manage.py backup_db
+To run it on a schedule, point Windows Task Scheduler at:
+python manage.py backup_db
 """
 
 import shutil

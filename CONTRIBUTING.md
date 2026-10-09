@@ -6,9 +6,9 @@ that it can be distributed under that same licence.
 
 ## Scope
 
-DeskLedger is a **local, single-user** bookkeeping tool: one person, one business,
-one install. Please do not send changes that add multi-user or multi-business support,
-cloud hosting, or server deployment.
+DeskLedger is a **local, single-user, Windows-only** bookkeeping tool: one person, one
+business, one install. Please do not send changes that add macOS or Linux support,
+multi-user or multi-business support, cloud hosting, or server deployment.
 
 ## Set up
 
@@ -16,8 +16,7 @@ cloud hosting, or server deployment.
 git clone https://github.com/djangify/deskledger.git
 cd deskledger
 python -m venv venv
-venv\Scripts\activate          # Windows
-# source venv/bin/activate     # macOS / Linux
+venv\Scripts\activate
 pip install -r requirements.txt
 python manage.py migrate
 python manage.py create_default_user   # prints a random password

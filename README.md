@@ -72,12 +72,12 @@ DeskLedger uses [Adminita](https://github.com/djangify/adminita), a clean and mo
 
 ## Quick Start
 
-DeskLedger is designed to run on your own machine. There are two ways to run it:
+DeskLedger is for **Windows 10 and 11 only**. It is not available for macOS or Linux. It is designed to run on your own Windows computer, and there are two ways to run it:
 
 | Method | Best For | Difficulty |
 |--------|----------|------------|
 | [Desktop App (Windows)](#desktop-app-windows) | A standalone Windows app for non-technical users — no Python needed | Easy |
-| [Local Development](#local-development) | Running from source, testing, or personal use on your machine | Easy |
+| [Local Development](#local-development) | Running from source on Windows, testing, or personal use on your computer | Easy |
 
 > Prefer to run DeskLedger on a server instead? That's not covered here by design — DeskLedger is built for local, single-user use. If you want to host it yourself, it's an ordinary Django app and you can wire up your own server setup.
 
@@ -97,7 +97,7 @@ Run DeskLedger locally on your machine from source. This runs the Django develop
 
 Double-click **`start.bat`**. It creates a `venv` folder, installs everything, sets up the database, creates your first login and opens your browser. The first login's random password is printed in the black window and saved to `data\first_login.txt` (see [Your password and keeping your books safe](#your-password-and-keeping-your-books-safe)).
 
-### Step by step (Windows, macOS, Linux)
+### Step by step (Windows)
 
 1. **Get the code**
 
@@ -110,12 +110,7 @@ Double-click **`start.bat`**. It creates a `venv` folder, installs everything, s
 
    ```bash
    python -m venv venv
-
-   # On Windows:
    venv\Scripts\activate
-
-   # On macOS/Linux:
-   source venv/bin/activate
    ```
 
 3. **Install dependencies**
@@ -127,10 +122,7 @@ Double-click **`start.bat`**. It creates a `venv` folder, installs everything, s
 4. **(Optional) create an environment file**
 
    ```bash
-   # Windows
    copy .env.example .env
-   # macOS/Linux
-   cp .env.example .env
    ```
 
    You can skip this step. DeskLedger creates its own secret key and encryption key on first run and stores them in `data/`. See [Configuration](#configuration) if you want to change anything.
@@ -233,7 +225,7 @@ The packaged app keeps user data **outside** the program folder so it survives r
 
 ### Requirements & notes
 
-- **Windows 10 or 11.** The build is Windows-only — it must be built *on* Windows, and the resulting `.exe` runs only on Windows. A Mac build would need to be produced on a Mac.
+- **Windows 10 or 11.** The build is Windows-only — it must be built *on* Windows, and the resulting `.exe` runs only on Windows. DeskLedger is not available for macOS or Linux.
 - PyWebView uses the **WebView2** runtime, which ships with Windows 11 and most updated Windows 10 machines. On a rare PC without it, Windows offers it as a free one-time download.
 - New apps trigger a **"Windows protected your PC"** SmartScreen warning. This is normal for unsigned indie software — click **More info → Run anyway**. This is covered in the end-user guide.
 - The app icon is read from `static/images/deskledger.ico` (referenced by `deskledger.spec`). Replace that file to change the icon.
@@ -293,7 +285,7 @@ DeskLedger holds your income, expenses and receipts, and it lives on **your** co
 
 Whoever can open your computer's files can do this too, which is why the next point matters.
 
-**4. Protect the computer itself.** Use a Windows account password, turn on **BitLocker / Device Encryption** (or FileVault on macOS), and lock the screen when you leave. Your database is a normal file; the login screen cannot protect a file that someone copies off an unprotected disk.
+**4. Protect the computer itself.** Use a Windows account password, turn on **BitLocker / Device Encryption**, and lock the screen when you leave. Your database is a normal file; the login screen cannot protect a file that someone copies off an unprotected disk.
 
 **5. Keep a backup somewhere else.** Copy the whole data folder (or the files in `data/db/backups/`) to an external drive or an encrypted cloud folder regularly. A backup on the same disk does not help if the disk fails. Remember that backups contain your financial records, so protect them as carefully as the original.
 
