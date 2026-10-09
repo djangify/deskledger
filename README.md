@@ -49,7 +49,7 @@ It is **local-first**: it runs on your own machine as a standalone Windows app, 
 - **You own your data** — Everything is stored locally in SQLite
 - **Privacy first** — No cloud, no accounts to sign up for, no data sharing. The one optional exception is receipt scanning (OCR): if you turn it on and add your own Anthropic or OpenAI key, the receipt image you scan is sent to that provider
 - **Simple and focused** — Built for solo professionals, not enterprise accounting
-- **UK tax year aware** — Automatically handles April-to-April tax years and UK dates.
+- **UK tax dates** — The tax year runs 6 April to 5 April and the quarters follow it. These dates are fixed. See [CONTRIBUTING.md](CONTRIBUTING.md) if you want to change that, or change the code yourself
 
 ## Features
 
@@ -60,13 +60,19 @@ It is **local-first**: it runs on your own machine as a standalone Windows app, 
 - **CSV Exports** — Export all your data when needed
 - **Receipt Storage** — Attach receipt images to expenses
 - **Recurring Entries** — Set up automatic monthly transactions
-- **Currency Symbol** — Choose £, € or $ in Settings (a display setting only; amounts are not converted)
+- **Currency choice** — Choose £, € or $ in Settings. The main screens show your choice. Nothing is converted, and a few messages and the admin area still show £
 - **Native Desktop App** — Run as a standalone Windows app in its own window — no browser required (see [Desktop App](#desktop-app-windows))
 - **Daily Backups** — The first time you open DeskLedger each day it copies your database into `data/db/backups/` and keeps 90 days of copies. You can also make a backup by hand at any time (see [Backups](#backups))
 
 ### One copy, one business
 
 DeskLedger is built for **one person and one business per copy**. It does not support several users or several businesses in the same copy. Multi-business and multi-user support are open as ideas for contributors (see [CONTRIBUTING.md](CONTRIBUTING.md)).
+
+### Tax dates and currency
+
+DeskLedger follows **UK tax dates**: the tax year runs 6 April to 5 April and the quarters follow it. You can choose £, € or $ in Settings, which changes the symbol shown on the main screens, but the dates stay the same and nothing is converted. A few messages (the VAT check) and the Django admin area still show £.
+
+You are free to change any of this, because DeskLedger is open source under the MIT License. [CONTRIBUTING.md](CONTRIBUTING.md) lists international tax dates and fuller currency support as ideas for contributors.
 
 ### Admin Interface
 
@@ -391,7 +397,7 @@ DeskLedger follows the UK tax year (6 April – 5 April):
 - **Q3:** October – December
 - **Q4:** January – March
 
-Switch between tax years using the dropdown in the navigation bar.
+Switch between tax years using the dropdown in the navigation bar. These dates are fixed; see [Tax dates and currency](#tax-dates-and-currency).
 
 ---
 

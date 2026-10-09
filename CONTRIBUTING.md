@@ -37,8 +37,11 @@ Pick one, open an issue to say you are working on it, then send a pull request.
    Quarters are stored on each income and expense record when it is saved. A setting for the
    tax year start date, with quarters to match, would make Desk Ledger usable outside the UK.
    It needs a way to recalculate the stored quarters for existing records, tests for dates
-   either side of the year boundary, and the hardcoded £ in the VAT check message in
-   `bookkeeping/models.py` to follow the chosen currency.
+   either side of the year boundary, and the hardcoded £ to follow the chosen
+   currency. The main screens already use the setting, but the Django admin
+   (`bookkeeping/admin.py`), the VAT check messages (`bookkeeping/forms.py` and
+   `bookkeeping/models.py`) and the recurring entry label (`bookkeeping/models.py`) still
+   show £.
 4. **A macOS and Linux version.** Desk Ledger only runs on Windows today, and nothing has
    been tested on a Mac or Linux. A port would need:
    - Start scripts to replace the Windows `.bat` files (`start.bat`, `start_desktop.bat`,
